@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import Counter from './components/Counter';
+import IncrementButton from './components/IncrementButton';
 
+/**
+ * Main App component that manages the state and renders the Counter
+ * and IncrementButton components.
+ */
 function App() {
+  // State to hold the current count value
+  const [count, setCount] = useState(0);
+
+  // Function to increment the count
+  const handleIncrement = () => setCount(count + 1);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="mt-5">
+      <Row className="justify-content-md-center">
+        <Col md="auto">
+          <Counter count={count} />
+        </Col>
+      </Row>
+      <Row className="justify-content-md-center mt-3">
+        <Col md="auto">
+          <IncrementButton onIncrement={handleIncrement} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
